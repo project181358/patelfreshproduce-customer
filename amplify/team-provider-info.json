@@ -1,0 +1,20 @@
+{
+    "defcus": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-storecustomer-defcus-134450-authRole",
+            "UnauthRoleArn": "arn:aws:iam::853949391427:role/amplify-storecustomer-defcus-134450-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::853949391427:role/amplify-storecustomer-defcus-134450-authRole",
+            "Region": "ap-south-1",
+            "DeploymentBucketName": "amplify-storecustomer-defcus-134450-deployment",
+            "UnauthRoleName": "amplify-storecustomer-defcus-134450-unauthRole",
+            "StackName": "amplify-storecustomer-defcus-134450",
+            "StackId": "arn:aws:cloudformation:ap-south-1:853949391427:stack/amplify-storecustomer-defcus-134450/d1e73080-94f1-11ea-835b-0aa7e2913d94",
+            "AmplifyAppId": "d2old1fb8q4y6m"
+        },
+        "categories": {
+            "auth": {
+                "storecustomer": {}
+            }
+        }
+    }
+}

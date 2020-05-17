@@ -1,0 +1,15 @@
+projects:
+  PatelStoreAPI:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: ap-south-1
+        apiId: rghqgt5xknepzbx3iyye5aq43y
+        maxDepth: 2
