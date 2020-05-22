@@ -8,7 +8,14 @@
       md="4"
       lg="3"
     >
-      <v-card max-height="300px" outlined>
+      <v-card
+        max-height="300px"
+        outlined
+        @click="
+          dialog = true;
+          selproduct = item;
+        "
+      >
         <v-img
           class="align-end"
           height="150px"
@@ -28,21 +35,36 @@
           <v-btn
             text
             class="orange--text text--lighten-1"
-            @click="addtocart(item)"
+            @click.stop="addtocart(item)"
           >
             Add to Cart
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
+    <single-product
+      :dialog="dialog"
+      :product="selproduct"
+      @close-dialog="
+        dialog = false;
+        selproduct = {};
+      "
+      @add-to-cart="addtocart"
+    ></single-product>
   </v-row>
   <!-- grid of cards -->
 </template>
 <script>
+import SingleProduct from "@/components/SingleProduct.vue";
 export default {
-  //  all products
+  components: {
+    SingleProduct
+  },
   data() {
-    return {};
+    return {
+      dialog: false,
+      selproduct: {}
+    };
   },
   computed: {
     products() {

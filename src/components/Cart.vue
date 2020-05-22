@@ -59,6 +59,9 @@
         <v-divider></v-divider>
       </v-list>
       <v-card-actions>
+        <p class="body-2 pl-3">
+          Cart Total : <span class="green--text">{{ "$ " + carttotal }}</span>
+        </p>
         <v-spacer></v-spacer>
         <v-btn color="primary" text @click="menu = false">Checkout</v-btn>
       </v-card-actions>
@@ -77,6 +80,12 @@ export default {
     },
     cart() {
       return this.$store.state.vx_cart;
+    },
+    carttotal() {
+      return this.cart.reduce(
+        (acc, item) => acc + item.quantity * item.item.product_price,
+        0
+      );
     }
   },
   methods: {
