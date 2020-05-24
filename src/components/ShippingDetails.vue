@@ -1,7 +1,7 @@
 <template>
-  <v-form ref="form" v-model="valid" :lazy-validation="true">
+  <v-form ref="form" v-model="valid">
     <v-text-field
-      v-model="email"
+      v-model="details.email"
       :rules="emailRules"
       label="E-mail"
       type="email"
@@ -14,6 +14,7 @@
     <div class="d-flex">
       <v-text-field
         v-model="details.firstname"
+        name="fname"
         :counter="10"
         :rules="nameRules"
         label="First Name"
@@ -23,10 +24,11 @@
         dense
       ></v-text-field>
       <v-text-field
-        v-model="details.secondname"
+        v-model="details.lastname"
         :counter="10"
         :rules="nameRules"
         label="Second Name"
+        name="lname"
         required
         outlined
         dense
@@ -40,13 +42,23 @@
       outlined
       dense
     ></v-text-field>
-    <v-text-field
-      v-model="details.address2"
-      label="Address 2"
-      hide-details
-      outlined
-      dense
-    ></v-text-field>
+    <div class="d-flex pt-3">
+      <v-text-field
+        v-model="details.address2"
+        label="Address 2"
+        hide-details
+        outlined
+        dense
+      ></v-text-field>
+      <v-text-field
+        v-model="details.phone"
+        name="phone"
+        label="Phone"
+        hide-details
+        outlined
+        dense
+      ></v-text-field>
+    </div>
     <div class="d-flex pt-3">
       <v-text-field
         v-model="details.state"
@@ -68,7 +80,8 @@
 
       <v-text-field
         v-model="details.pin"
-        label="Pin"
+        name="zip"
+        label="Zip"
         :rules="[
           v => (!!v && /^\d{4,6}$/.test(v)) || 'Please enter valid zipcode'
         ]"
@@ -81,19 +94,12 @@
 </template>
 <script>
 export default {
+  props: {
+    tmpdetails: Object,
+    shippingvalid: Boolean
+  },
   data() {
     return {
-      valid: true,
-      details: {
-        firstname: "",
-        lastname: "",
-        address1: "",
-        address2: "",
-        phone: "",
-        city: "",
-        state: "",
-        pin: ""
-      },
       nameRules: [
         v => !!v || "Name is required",
         v => (v && v.length <= 10) || "Name must be less than 10 characters"
@@ -104,6 +110,25 @@ export default {
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
       ]
     };
-  }
+  },
+  computed: {
+    details: {
+      get() {
+        return this.tmpdetails;
+      },
+      set(item) {
+        this.$emit("edit-details", item);
+      }
+    },
+    valid: {
+      get() {
+        return this.shippingvalid;
+      },
+      set(val) {
+        this.$emit("validate", val);
+      }
+    }
+  },
+  methods: {}
 };
 </script>

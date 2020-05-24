@@ -106,3 +106,54 @@ export const deleteStock = /* GraphQL */ `
     }
   }
 `;
+export const createOrder = /* GraphQL */ `
+  mutation CreateOrder($input: CreateOrderInput!) {
+    createOrder(input: $input) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;
+export const updateOrder = /* GraphQL */ `
+  mutation UpdateOrder($input: UpdateOrderInput!) {
+    updateOrder(input: $input) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;
+export const deleteOrder = /* GraphQL */ `
+  mutation DeleteOrder($input: DeleteOrderInput!) {
+    deleteOrder(input: $input) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;

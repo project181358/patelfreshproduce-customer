@@ -178,3 +178,90 @@ export const onDeleteStock = /* GraphQL */ `
     }
   }
 `;
+export const onCreateOrder = /* GraphQL */ `
+  subscription OnCreateOrder(
+    $id: ID
+    $products: [OrderItemInput!]
+    $timestamp: AWSTimestamp
+    $email: AWSEmail
+    $full_name: String
+  ) {
+    onCreateOrder(
+      id: $id
+      products: $products
+      timestamp: $timestamp
+      email: $email
+      full_name: $full_name
+    ) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;
+export const onUpdateOrder = /* GraphQL */ `
+  subscription OnUpdateOrder(
+    $id: ID
+    $products: [OrderItemInput!]
+    $timestamp: AWSTimestamp
+    $email: AWSEmail
+    $full_name: String
+  ) {
+    onUpdateOrder(
+      id: $id
+      products: $products
+      timestamp: $timestamp
+      email: $email
+      full_name: $full_name
+    ) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;
+export const onDeleteOrder = /* GraphQL */ `
+  subscription OnDeleteOrder(
+    $id: ID
+    $products: [OrderItemInput!]
+    $timestamp: AWSTimestamp
+    $email: AWSEmail
+    $full_name: String
+  ) {
+    onDeleteOrder(
+      id: $id
+      products: $products
+      timestamp: $timestamp
+      email: $email
+      full_name: $full_name
+    ) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;

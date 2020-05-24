@@ -17,23 +17,19 @@
               {{ item.item.product_name }}
             </span>
             <span class="float-right">
-              <!-- <v-btn icon x-small>
-                  <v-icon>mdi-minus</v-icon>
-                </v-btn> -->
+              <v-btn icon x-small>
+                <v-icon @click="decrementeqty(item)">mdi-minus</v-icon>
+              </v-btn>
               <span class="overline">Qty:</span>
-              <v-text-field
-                dense
-                hide-details
-                type="number"
-                :disabled="freezecart"
-                v-model="item.quantity"
-                @change="checkqty(item)"
+              <p
                 style="max-width:40px"
                 class="mx-1 d-inline-flex text-center caption"
-              ></v-text-field>
-              <!-- <v-btn icon x-small>
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn> -->
+              >
+                {{ item.quantity }}
+              </p>
+              <v-btn icon x-small>
+                <v-icon @click="incrementqty(item)">mdi-plus</v-icon>
+              </v-btn>
               <span class="caption pl-3 d-inline-block" style="width:55px">{{
                 "$ " + item.price
               }}</span>
@@ -94,6 +90,12 @@ export default {
   methods: {
     checkqty(item) {
       if (item.quantity <= 0) item.quantity = 1;
+    },
+    incrementqty(item) {
+      item.quantity += 1;
+    },
+    decrementeqty(item) {
+      item.quantity -= 1;
     },
     removefromcart(item) {
       this.$store.commit("REMOVE_FROM_CART", item);

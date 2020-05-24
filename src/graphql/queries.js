@@ -6,12 +6,22 @@ export const getProducts = /* GraphQL */ `
     getProducts(id: $id) {
       id
       product_name
+      expiry_duration
+      minimum_stock
       product_cart_description
       product_long_description
       product_category
       product_image
       product_location
       product_price
+      product_stock {
+        id
+        product_id
+        quantity
+        date_added
+        expiry_date
+      }
+      product_measure
     }
   }
 `;
@@ -31,6 +41,7 @@ export const listProducts = /* GraphQL */ `
         product_image
         product_location
         product_price
+        product_measure
       }
       nextToken
     }
@@ -60,6 +71,42 @@ export const listStocks = /* GraphQL */ `
         quantity
         date_added
         expiry_date
+      }
+      nextToken
+    }
+  }
+`;
+export const getOrder = /* GraphQL */ `
+  query GetOrder($id: ID!) {
+    getOrder(id: $id) {
+      id
+      products {
+        id
+        purchase_quantity
+        total_price
+      }
+      timestamp
+      email
+      full_name
+      phone
+      address
+    }
+  }
+`;
+export const listOrders = /* GraphQL */ `
+  query ListOrders(
+    $filter: TableOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        timestamp
+        email
+        full_name
+        phone
+        address
       }
       nextToken
     }

@@ -40,9 +40,11 @@
 </template>
 <script>
 export default {
+  props: {
+    cardvalid: Boolean
+  },
   data() {
     return {
-      valid: true,
       cardno: "",
       name: "",
       expiry: "",
@@ -52,6 +54,16 @@ export default {
         v => (v && v.length <= 10) || "Name must be less than 10 characters"
       ]
     };
+  },
+  computed: {
+    valid: {
+      get() {
+        return this.shippingvalid;
+      },
+      set(val) {
+        this.$emit("validate", val);
+      }
+    }
   }
 };
 </script>
