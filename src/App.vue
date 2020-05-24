@@ -46,7 +46,9 @@
           <v-card flat tile class="orange lighten-1 white--text pl-6 pr-2">
             <p class="title pt-2">Help</p>
             <div class="pl-2">
-              <p class="body-2">My Orders</p>
+              <v-btn text class="white--text body-2 text-capitalize" to="/order"
+                >Order Details</v-btn
+              >
             </div>
           </v-card>
         </v-col>
@@ -72,7 +74,8 @@
 </template>
 <script>
 import Cart from "@/components/Cart.vue";
-
+import { API, graphqlOperation } from "aws-amplify";
+import * as queries from "@/graphql/queries";
 export default {
   components: {
     Cart
@@ -96,6 +99,19 @@ export default {
         { name: "Cancellation", content: "" }
       ]
     };
+  },
+  beforeMount() {
+    let data;
+    (async () => {
+      try {
+        ({ data } = await API.graphql(graphqlOperation(queries.listProducts)));
+        // console.log(data);
+        // console.log(errors);
+        this.$store.commit("SET_ALL_PRODUCTS", data.listProducts.items);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
   }
 };
 </script>
