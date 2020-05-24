@@ -17,19 +17,20 @@
               {{ item.item.product_name }}
             </span>
             <span class="float-right">
-              <v-btn icon x-small>
+              <!-- <span class="overline">Quantity:</span> -->
+              <v-btn icon x-small :disabled="isdisabled">
                 <v-icon @click="decrementeqty(item)">mdi-minus</v-icon>
               </v-btn>
-              <span class="overline">Qty:</span>
               <p
                 style="max-width:40px"
-                class="mx-1 d-inline-flex text-center caption"
+                class="mx-2 d-inline-flex text-center caption"
               >
                 {{ item.quantity }}
               </p>
-              <v-btn icon x-small>
+              <v-btn icon x-small :disabled="isdisabled">
                 <v-icon @click="incrementqty(item)">mdi-plus</v-icon>
               </v-btn>
+              <!-- <span class="overline">Cost :</span> -->
               <span class="caption pl-3 d-inline-block" style="width:55px">{{
                 "$ " + item.price
               }}</span>
@@ -39,7 +40,7 @@
 
         <v-list-item-action>
           <v-btn
-            :disabled="freezecart"
+            :disabled="isdisabled"
             icon
             x-small
             @click="removefromcart(item)"
@@ -55,20 +56,22 @@
         Cart Total : <span class="green--text">{{ "$ " + carttotal }}</span>
       </p>
       <v-spacer></v-spacer>
-      <v-btn
+      <!-- <v-btn
         color="primary"
-        :disabled="cartlen == 0 || $route.name == 'Checkout'"
         text
-        @click="menu = false"
+        @click="isdisabled = false"
         to="/checkout"
-        >Checkout</v-btn
-      >
+        >Edit Cart</v-btn
+      > -->
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
 export default {
+  props: {
+    isdisabled: Boolean
+  },
   data: () => ({}),
   computed: {
     cartlen() {
@@ -82,9 +85,6 @@ export default {
         (acc, item) => acc + item.quantity * item.item.product_price,
         0
       );
-    },
-    freezecart() {
-      return this.$route.name == "Checkout";
     }
   },
   methods: {

@@ -1,6 +1,8 @@
 <template>
   <v-row class="mt-5 pr-3">
-    <v-col sm="12" cols="12" md="6" class="mx-4"> </v-col>
+    <v-col sm="12" cols="12" md="6" class="mx-4">
+      <edit-cart :isdisabled="isdisabled"></edit-cart>
+    </v-col>
     <v-col>
       <v-stepper v-model="step" vertical>
         <v-stepper-step :complete="step > 1" step="1">
@@ -101,6 +103,7 @@
 
 <script>
 import ShippingDetails from "@/components/ShippingDetails.vue";
+import EditCart from "@/components/EditCart.vue";
 import CardDetails from "@/components/CardDetails.vue";
 import { API, graphqlOperation } from "aws-amplify";
 import * as mutation from "@/graphql/mutations";
@@ -108,11 +111,13 @@ import * as mutation from "@/graphql/mutations";
 export default {
   components: {
     ShippingDetails,
-    CardDetails
+    CardDetails,
+    EditCart
   },
 
   data() {
     return {
+      isdisabled: false,
       details: {
         firstname: "",
         lastname: "",
@@ -135,6 +140,7 @@ export default {
   methods: {
     validateAndContinue(r, next) {
       if (this[r]) {
+        this.isdisabled = true;
         next();
       }
     },
