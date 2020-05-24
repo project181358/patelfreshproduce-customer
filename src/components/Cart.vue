@@ -35,6 +35,7 @@
                   dense
                   hide-details
                   type="number"
+                  :disabled="freezecart"
                   v-model="item.quantity"
                   @change="checkqty(item)"
                   style="max-width:40px"
@@ -51,7 +52,12 @@
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-btn icon x-small @click="removefromcart(item)">
+            <v-btn
+              :disabled="freezecart"
+              icon
+              x-small
+              @click="removefromcart(item)"
+            >
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </v-list-item-action>
@@ -63,7 +69,14 @@
           Cart Total : <span class="green--text">{{ "$ " + carttotal }}</span>
         </p>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="menu = false">Checkout</v-btn>
+        <v-btn
+          color="primary"
+          :disabled="cartlen == 0 || $route.name == 'Checkout'"
+          text
+          @click="menu = false"
+          to="/checkout"
+          >Checkout</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-menu>
@@ -86,6 +99,9 @@ export default {
         (acc, item) => acc + item.quantity * item.item.product_price,
         0
       );
+    },
+    freezecart() {
+      return this.$route.name == "Checkout";
     }
   },
   methods: {

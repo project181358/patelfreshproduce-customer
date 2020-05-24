@@ -21,7 +21,7 @@
         <v-col cols="12">
           <v-divider class="orange lighten-4"></v-divider>
         </v-col>
-        <v-col md="4" cols="12">
+        <v-col md="4" cols="12" class="pt-1">
           <v-card flat tile class="orange lighten-1 white--text pl-6 pr-2">
             <p class="title pt-2">Have Questions?</p>
             <div>
@@ -42,14 +42,20 @@
           </v-card>
         </v-col>
 
-        <v-col  md="4" cols="12">
-          <v-card flat tile class="orange lighten-1 white--text">
-            <p class="title pt-2 pl-3">Help</p>
+        <v-col md="4" cols="12" class="pt-1">
+          <v-card flat tile class="orange lighten-1 white--text pl-6 pr-2">
+            <p class="title pt-2">Help</p>
+            <div class="pl-2">
+              <p class="body-2">My Orders</p>
+            </div>
           </v-card>
         </v-col>
-        <v-col  md="4" cols="12">
-          <v-card flat tile class="orange lighten-1 white--text">
-            <p class="title pt-2 pl-3">Help</p>
+        <v-col md="4" cols="12" class="pt-1">
+          <v-card flat tile class="orange lighten-1 white--text pl-6 pr-2">
+            <p class="title pt-2">Policies</p>
+            <p v-for="(pitem, i) in policies" :key="i" class="body-2 pl-2">
+              {{ pitem.name }}
+            </p>
           </v-card>
         </v-col>
         <v-col cols="12">
@@ -83,7 +89,12 @@ export default {
             "Dandenong Market,\nCorner of Clow and Cleeland St.,\nDandenong, VIC 3175"
         }
       ],
-      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"]
+      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+      policies: [
+        { name: "Return & Exchange", content: "" },
+        { name: "Shipping", content: "" },
+        { name: "Cancellation", content: "" }
+      ]
     };
   }
 };

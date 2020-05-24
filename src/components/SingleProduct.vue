@@ -5,7 +5,11 @@
         <v-card-title class="headline grey lighten-2" primary-title>
           {{ product.product_name }}
         </v-card-title>
-
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          src="https://via.placeholder.com/300"
+        ></v-img>
         <v-card-text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
