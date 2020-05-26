@@ -54,6 +54,7 @@
         v-model="details.phone"
         name="phone"
         label="Phone"
+        :rules="phonerules"
         hide-details
         outlined
         dense
@@ -108,6 +109,14 @@ export default {
       emailRules: [
         v => !!v || "E-mail is required",
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      phonerules: [
+        v =>
+          v
+            ? /^0\d+/.test(v) || /^\+\d+/.test(v)
+              ? true
+              : "Phone number invalid"
+            : true
       ]
     };
   },

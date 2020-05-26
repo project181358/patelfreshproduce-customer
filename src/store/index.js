@@ -46,6 +46,9 @@ export default new Vuex.Store({
     REMOVE_FROM_CART(state, item) {
       let i = state.vx_cart.findIndex(j => j.item.id == item.id);
       state.vx_cart.splice(i, 1);
+    },
+    CLEAR_CART(state) {
+      state.vx_cart = [];
     }
   },
   actions: {},

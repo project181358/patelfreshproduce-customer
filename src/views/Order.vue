@@ -1,6 +1,7 @@
 <template>
   <v-container class="mt-8" style="min-height:100vh">
     <v-text-field
+      v-if="search"
       style="max-width:350px"
       outlined
       v-model="id"
@@ -29,30 +30,33 @@
       <!-- order date -->
       <v-col md="6">
         <v-card outlined class="pa-3" min-height="150px">
-          <div class="pt-2">
-            <span class="overline">
-              Order Id :
-            </span>
-            <span class="caption">
-              {{ order.id }}
-            </span>
-          </div>
-          <div class="pt-2">
-            <span class="overline">
-              Shipping Address :
-            </span>
-            <span class="body-2">
-              {{ order.address }}
-            </span>
-          </div>
-          <div class="pt-2">
-            <span class="overline">
-              Shipping Status :
-            </span>
-            <span class="body-2">
-              Shipped
-            </span>
-          </div>
+          <v-card-title>Order Details</v-card-title>
+          <v-card-text>
+            <div class="pt-2">
+              <span class="text-bold black--text">
+                Order Id :
+              </span>
+              <span class="caption">
+                {{ order.id }}
+              </span>
+            </div>
+            <div class="pt-2">
+              <span class="text-bold black--text">
+                Shipping Address :
+              </span>
+              <span class="body-2">
+                {{ order.address }}
+              </span>
+            </div>
+            <div class="pt-2">
+              <span class="text-bold black--text">
+                Shipping Status :
+              </span>
+              <span class="body-2 green--text">
+                Order Placed
+              </span>
+            </div>
+          </v-card-text>
         </v-card>
       </v-col>
       <v-col md="6">
@@ -103,7 +107,8 @@ export default {
     id: "",
     msg: "",
     order: null,
-    err: false
+    err: false,
+    search: true
   }),
 
   methods: {
@@ -126,13 +131,18 @@ export default {
       })();
     },
     getprod(id) {
-      console.log(id);
       let res = this.$store.state.vx_all_products.find(p => p.id == id);
-      console.log(res);
       return res;
     },
     getproducts(idarr) {
       return idarr.map(this.getprod);
+    }
+  },
+  mounted() {
+    if (this.$route.query.search == "false") this.search = false;
+    if (this.$route.query.id) {
+      this.id = this.$route.query.id;
+      this.order = this.getorder();
     }
   }
 };

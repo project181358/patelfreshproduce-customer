@@ -95,6 +95,12 @@
             </p>
           </v-card>
           <v-btn text class="orange--text" to="/shop">Continue Shopping</v-btn>
+          <v-btn
+            text
+            class="orange--text"
+            :to="`/order?id=${order.id}&search=false`"
+            >View Order Details</v-btn
+          >
         </v-stepper-content>
       </v-stepper>
     </v-col>
@@ -152,6 +158,7 @@ export default {
       // mutation
       // {products: [{id,purchase_quantity,total_price}],full_name ,address(combine all details),email,phone}
       //
+      if (/^0/.test(h.phone)) h.phone = h.phone.replace("0", "+61");
       let input = {
         products: this.$store.state.vx_cart.map(i => ({
           id: i.item.id,
@@ -173,6 +180,7 @@ export default {
           console.log(data);
           this.order = data.createOrder;
           this.step = 3;
+          this.$store.commit("CLEAR_CART");
         } catch (err) {
           console.log(err);
         }
