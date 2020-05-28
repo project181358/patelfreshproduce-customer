@@ -28,7 +28,7 @@
           </span>
           <v-spacer></v-spacer>
           <span class="body-2">
-            {{ "$ " + item.product_price + " KG" }}
+            {{ "$ " + item.product_price + " / BOX" }}
           </span>
         </v-card-title>
         <v-card-actions>
