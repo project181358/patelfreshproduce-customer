@@ -74,8 +74,6 @@
 </template>
 <script>
 import Cart from "@/components/Cart.vue";
-import { API, graphqlOperation } from "aws-amplify";
-import * as queries from "@/graphql/queries";
 export default {
   components: {
     Cart
@@ -99,19 +97,6 @@ export default {
         { name: "Cancellation", content: "" }
       ]
     };
-  },
-  beforeMount() {
-    let data;
-    (async () => {
-      try {
-        ({ data } = await API.graphql(graphqlOperation(queries.listProducts)));
-        // console.log(data);
-        // console.log(errors);
-        this.$store.commit("SET_ALL_PRODUCTS", data.listProducts.items);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
   }
 };
 </script>

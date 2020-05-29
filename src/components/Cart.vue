@@ -31,16 +31,9 @@
                   <v-icon>mdi-minus</v-icon>
                 </v-btn> -->
                 <span class="overline">Qty:</span>
-                <v-text-field
-                  dense
-                  hide-details
-                  type="number"
-                  :disabled="freezecart"
-                  v-model="item.quantity"
-                  @change="checkqty(item)"
-                  style="max-width:40px"
+                <p style="max-width:40px"
                   class="mx-1 d-inline-flex text-center caption"
-                ></v-text-field>
+                > {{item.quantity}} </p>
                 <!-- <v-btn icon x-small>
                   <v-icon>mdi-plus</v-icon>
                 </v-btn> -->

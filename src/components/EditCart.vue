@@ -19,7 +19,7 @@
             <span class="float-right">
               <!-- <span class="overline">Quantity:</span> -->
               <v-btn icon x-small :disabled="isdisabled">
-                <v-icon @click="decrementeqty(item)">mdi-minus</v-icon>
+                <v-icon :disabled="item.quantity == 1" @click="decrementeqty(item)">mdi-minus</v-icon>
               </v-btn>
               <p
                 style="max-width:40px"
@@ -28,7 +28,7 @@
                 {{ item.quantity }}
               </p>
               <v-btn icon x-small :disabled="isdisabled">
-                <v-icon @click="incrementqty(item)">mdi-plus</v-icon>
+                <v-icon :disabled="item.quantity == 5" @click="incrementqty(item)">mdi-plus</v-icon>
               </v-btn>
               <!-- <span class="overline">Cost :</span> -->
               <span class="caption pl-3 d-inline-block" style="width:55px">{{

@@ -42,6 +42,9 @@ export const listProducts = /* GraphQL */ `
         product_location
         product_price
         product_measure
+        product_stock{
+          quantity
+        }
       }
       nextToken
     }
