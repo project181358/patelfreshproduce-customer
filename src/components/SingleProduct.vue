@@ -8,23 +8,36 @@
         <v-img
           class="white--text align-end"
           height="200px"
-          src="https://via.placeholder.com/300"
+          contain
+          :src="product.product_image || 'https://via.placeholder.com/500x200'"
         ></v-img>
         <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <div class="pt-2">
+            <p v-if="!product.available" class="overline red--text mb-0">
+              *Out Of Stock
+            </p>
+            <p class="title">
+              {{
+                "$ " + product.product_price + " / " + product.product_measure
+              }}
+            </p>
+          </div>
+          <p>
+            {{ product.product_cart_description }}
+          </p>
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="addtocart">
+
+          <v-btn
+            :disabled="!product.available"
+            color="primary"
+            text
+            @click="addtocart"
+          >
             Add to cart
           </v-btn>
         </v-card-actions>

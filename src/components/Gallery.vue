@@ -19,21 +19,26 @@
         <v-img
           class="align-end"
           height="150px"
-          src="https://via.placeholder.com/300"
+          :src="item.product_image || 'https://via.placeholder.com/270x150'"
         >
         </v-img>
-        <v-card-title class="pb-0">
-          <span>
+        <v-card-title class="pb-1">
+          <p class="mb-0">
             {{ item.product_name }}
-          </span>
+          </p>
+
           <v-spacer></v-spacer>
-          <span class="body-2">
-            {{ "$ " + item.product_price + " / BOX" }}
-          </span>
+          <p class="body-2 mb-0 mt-0">
+            {{ "$ " + item.product_price + " / " + item.product_measure }}
+          </p>
         </v-card-title>
-        <v-card-actions>
+        <p v-if="!item.available" class="overline red--text mb-0 pl-3">
+          *Out Of Stock
+        </p>
+        <v-card-actions class="pt-0">
           <v-btn
             text
+            :disabled="!item.available"
             class="orange--text text--lighten-1"
             @click.stop="addtocart(item)"
           >
