@@ -32,13 +32,13 @@
             {{ "$ " + item.product_price + " / " + item.product_measure }}
           </p>
         </v-card-title>
-        <p v-if="!item.available" class="overline red--text mb-0 pl-3">
+        <p v-if="item.available" class="overline red--text mb-0 pl-3">
           *Out Of Stock
         </p>
         <v-card-actions class="pt-0">
           <v-btn
             text
-            :disabled="!item.available"
+            :disabled="item.available"
             class="orange--text text--lighten-1"
             @click.stop="addtocart(item)"
           >

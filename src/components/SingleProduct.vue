@@ -13,7 +13,7 @@
         ></v-img>
         <v-card-text>
           <div class="pt-2">
-            <p v-if="!product.available" class="overline red--text mb-0">
+            <p v-if="product.available" class="overline red--text mb-0">
               *Out Of Stock
             </p>
             <p class="title">
@@ -33,7 +33,7 @@
           <v-spacer></v-spacer>
 
           <v-btn
-            :disabled="!product.available"
+            :disabled="product.available"
             color="primary"
             text
             @click="addtocart"
