@@ -31,9 +31,12 @@
                   <v-icon>mdi-minus</v-icon>
                 </v-btn> -->
                 <span class="overline">Qty:</span>
-                <p style="max-width:40px"
+                <p
+                  style="max-width:40px"
                   class="mx-1 d-inline-flex text-center caption"
-                > {{item.quantity}} </p>
+                >
+                  {{ item.quantity }}
+                </p>
                 <!-- <v-btn icon x-small>
                   <v-icon>mdi-plus</v-icon>
                 </v-btn> -->
