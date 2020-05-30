@@ -15,7 +15,7 @@ class CartItem {
     return this._quantity;
   }
   set quantity(i) {
-    if (i > 0) {
+    if (i > 0 && i <= 5) {
       this._quantity = i;
     }
   }
