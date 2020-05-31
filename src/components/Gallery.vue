@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col
-      v-for="(item, i) in products"
+      v-for="(item, i) in paged_products"
       :key="i"
       cols="12"
       sm="6"
@@ -47,6 +47,13 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <div class="text-center mx-auto d-block" style="width:100%">
+      <v-pagination
+        v-model="page"
+        :length="Math.ceil(products.length / 16)"
+        color="orange"
+      ></v-pagination>
+    </div>
     <single-product
       :dialog="dialog"
       :product="selproduct"
@@ -68,12 +75,16 @@ export default {
   data() {
     return {
       dialog: false,
+      page: 1,
       selproduct: {}
     };
   },
   computed: {
     products() {
       return this.$store.state.vx_all_products;
+    },
+    paged_products() {
+      return this.products.slice((this.page - 1) * 16, this.page * 16 - 1);
     }
   },
   methods: {
